@@ -23,10 +23,19 @@ func (s *BookStore) Book(id uuid.UUID) (types.Book, error) {
 
 func (s *BookStore) BooksByAuthor(authorID uuid.UUID) ([]types.Book, error) {
 	var bb []types.Book
-	if err := s.Get(&bb, `SELECT * FROM books WHERE author_id = $1`, authorID); err != nil {
+	if err := s.Select(&bb, `SELECT * FROM books WHERE author_id = $1`, authorID); err != nil {
 		return []types.Book{}, fmt.Errorf("error getting books by id: %w", err)
 	}
 	return bb, nil
+}
+
+func (s *BookStore) BooksWithAuthors() ([]types.BookInfo, error) {
+	var bbi []types.BookInfo
+	err := s.Select(&bbi, `SELECT authors.name, books.title, books.description FROM books INNER JOIN authors ON books.author_id = authors.id`)
+	if err != nil {
+		return []types.BookInfo{}, fmt.Errorf("error getting all books: %w", err)
+	}
+	return bbi, nil
 }
 
 func (s *BookStore) CreateBook(b *types.Book) error {

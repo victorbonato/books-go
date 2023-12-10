@@ -14,6 +14,12 @@ type Book struct {
 	Description string    `db:"description"`
 }
 
+type BookInfo struct {
+	AuthorName  string `db:"name"`
+	Title       string `db:"title"`
+	Description string `db:"description"`
+}
+
 type AuthorStore interface {
 	Author(id uuid.UUID) (Author, error)
 	AllAuthors() ([]Author, error)
@@ -25,6 +31,7 @@ type AuthorStore interface {
 type BookStore interface {
 	Book(id uuid.UUID) (Book, error)
 	BooksByAuthor(authorID uuid.UUID) ([]Book, error)
+	BooksWithAuthors() ([]BookInfo, error)
 	CreateBook(b *Book) error
 	UpdateBook(b *Book) error
 	DeleteBook(id uuid.UUID) error
