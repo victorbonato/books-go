@@ -29,3 +29,8 @@ type BookStore interface {
 	UpdateBook(b *Book) error
 	DeleteBook(id uuid.UUID) error
 }
+
+type Store interface {
+	AuthorStore
+	BookStore
+}
