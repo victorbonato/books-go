@@ -1,0 +1,11 @@
+CREATE TABLE authors (
+  id UUID PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE books (
+  id UUID PRIMARY KEY,
+  author_id UUID NOT NULL REFERENCES authors (id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL
+);
