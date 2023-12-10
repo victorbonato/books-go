@@ -12,7 +12,7 @@ This project is a simple Golang API designed for learning purposes. It utilizes 
 ## Getting Started
 ### Prerequisites
 - Go programming language
-- PostgreSQL database
+- Docker
 - `.env` file with necessary environment variables
 
 ### Installation
