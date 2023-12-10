@@ -19,7 +19,7 @@ type AuthorStore interface {
 	AllAuthors() ([]Author, error)
 	CreateAuthor(a *Author) error
 	UpdateAuthor(a *Author) error
-	DeleteAuthor(id *uuid.UUID) error
+	DeleteAuthor(id uuid.UUID) error
 }
 
 type BookStore interface {

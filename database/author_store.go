@@ -47,7 +47,7 @@ func (s *AuthorStore) UpdateAuthor(a *types.Author) error {
 	return nil
 }
 
-func (s *AuthorStore) DeleteAuthor(id *uuid.UUID) error {
+func (s *AuthorStore) DeleteAuthor(id uuid.UUID) error {
 	if _, err := s.Exec(`DELETE FROM authors WHERE id = $1`, id); err != nil {
 		return fmt.Errorf("error deleting author: %w", err)
 	}
