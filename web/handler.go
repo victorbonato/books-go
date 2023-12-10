@@ -19,7 +19,6 @@ func NewHandler(store types.Store) *Handler {
 		authors_routes.PATCH("/:id", h.UpdateAuthor)
 		authors_routes.DELETE("/:id", h.DeleteAuthor)
 	}
-
 	books_routes := h.Group("/books")
 	{
 		books_routes.GET("/", h.GetAllBooksInfo)
